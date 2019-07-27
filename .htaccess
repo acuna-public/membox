@@ -1,0 +1,11 @@
+AddDefaultCharset utf-8
+DirectoryIndex index.php
+
+RewriteEngine On
+
+# Укажите расширения файлов, которые будут недоступны по прямым ссылкам:
+RewriteRule \.(db|sql|cache)$ - [NC,F,L]
+
+RewriteRule ^images/mems/(.*).jpg(/?)+$ index.php?mod=memgen&name=$1 [L]
+
+RewriteRule ^([A-Za-z_-]*)(/?)+$ index.php?mod=memgen&name=$1 [L]

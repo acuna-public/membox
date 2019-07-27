@@ -1,0 +1,4 @@
+User-agent: Yandex
+Host: membox.ointeractive.ru
+
+User-agent: *

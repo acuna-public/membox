@@ -1,0 +1,86 @@
+    <div id="container">
+      
+      <div id="adv_left"></div>
+      <div id="adv_right"></div>
+    
+      <div id="center" class="column">
+        
+        <form action="#" id="mems-form" method="post">
+          
+          <div id="title"><h1>{speedbar}</h1></div>
+          
+          <div id="content">
+            
+            <div class="controls">
+              
+              Выберите картинку из списка:<br/>
+              <div class="sep"></div>
+              
+              <select name="image" id="image" onchange="change_image ();">{images}
+              </select><br/>
+              <br/>
+              
+              Или загрузите картинку с компьютера:
+              <div class="sep"></div>
+              
+              <input type="file" name="image_hdd" id="image_hdd"/><br/>
+              <br/>
+              
+              Или укажите полный URL любой картинки:
+              <div class="sep"></div>
+              
+              <input type="text" class="input" name="image_url" id="image_url" value="{image_url}" style="width:300px;"/>
+              <div class="sep"></div>
+              <div class="small">Например: http://mysite.ru/picture.jpg</div><br/>
+              <br/>
+              Верх:
+              <div class="sep"></div>
+              
+              <textarea class="textarea" style="width:300px; height:50px;" name="text_top" id="text_top"></textarea>
+              <div class="sep"></div>
+              Размер шрифта: <select name="font_size_top">{font_sizes}</select><br/>
+              <br/>
+              Низ:
+              <div class="sep"></div>
+              
+              <textarea class="textarea" style="width:300px; height:50px;" name="text_bottom" id="text_bottom"></textarea>
+              <div class="sep"></div>
+              
+              Размер шрифта: <select name="font_size_bottom">{font_sizes}</select><br/>
+              <br/>
+              <br/>
+              <input type="hidden" name="action" value="make"/>
+              <input type="submit" class="button" value="Поехали"/>
+              
+            </div>
+            
+            <div class="mem">
+              <div id="mem_img">[mem_selected]<img alt="" src="{image_selected}"/>[/mem_selected][mem_not_selected]<img alt="" src="{THEME}/images/logo.jpg" class="logo"/>[/mem_not_selected]</div>
+            </div>
+            
+          </div>
+          
+        </form>
+        
+        <div id="copyright">&copy; 2014-{year} <a href="http://ointeractive.ru">http://ointeractive.ru</a></div>
+        
+      </div>
+      
+    </div>
+    
+    <div id="footer">
+      
+      <div id="comments">
+        
+        <div class="br"></div>
+        <div id="vk_comments"></div>
+        
+        <script type="text/javascript">
+          VK.Widgets.Comments ('vk_comments', { limit:10, width:800, attach:false });
+        </script>
+        
+        <div id="info">Самый быстрый мем генератор, генератор мемов, со своими фото, своя картинка, {mems_list} и другие.</div>
+        
+      </div>
+      
+    </div>

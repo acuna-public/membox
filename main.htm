@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    
+    {headers}    <link rel="stylesheet" title="default" href="{THEME}/style.css" type="text/css"/>
+    
+    <script type="text/javascript" src="{THEME}/jquery.js"></script>
+    <script type="text/javascript" src="{THEME}/jquery.form.js"></script>
+    
+    <script type="text/javascript" src="{THEME}/functions.js"></script>
+    
+    <script type="text/javascript" src="http://userapi.com/js/api/openapi.js?95"></script>
+    
+    <script type="text/javascript">
+      VK.init ({ apiId:3632689, onlyWidgets:true });
+    </script>
+    
+  </head>
+  
+  <body>
+    
+    <div id="header"></div>
+    
+    {content}
+    
+    <ul id="banners">
+      <li>
+        <a href="http://validator.w3.org/check?uri=referer"><img style="width:88px; height:31px;" src="{THEME}/w3cvalidhtml5.png" alt="Valid HTML 5.0"/></a>
+      </li>
+      <li>
+        <a href="http://jigsaw.w3.org/css-validator/check/referer"><img style="width:88px; height:31px;" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS"/></a>
+      </li>
+    </ul>
+    
+    <script type="text/javascript">
+      (function (d, w, c) {
+        
+        (w[c] = w[c] || []).push (function () {
+          try {
+            w.yaCounter21212227 = new Ya.Metrika ({ id:21212227, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true });
+          } catch (e) {}
+        });
+        
+        var n = d.getElementsByTagName ('script')[0], s = d.createElement ('script'), f = function () { n.parentNode.insertBefore (s, n); };
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = (d.location.protocol == 'https:' ? 'https:' : 'http:') + '//mc.yandex.ru/metrika/watch.js';
+        
+        if (w.opera == '[object Opera]')
+        d.addEventListener ('DOMContentLoaded', f, false);
+        else f ();
+        
+      }) (document, window, 'yandex_metrika_callbacks');
+    </script>
+    
+    <script src="http://mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+    
+  </body>
+  
+</html>
