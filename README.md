@@ -1,2 +1,2 @@
 # MemBox
-Memes Generator. Just a nostalgic univercity toy project.
+Memes Generator. Just a nostalgic university toy project.
