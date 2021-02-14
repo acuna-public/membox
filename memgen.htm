@@ -2,7 +2,7 @@
       
       <div id="adv_left"></div>
       <div id="adv_right"></div>
-    
+      
       <div id="center" class="column">
         
         <form action="#" id="mems-form" method="post">
@@ -16,17 +16,19 @@
               Выберите картинку из списка:<br/>
               <div class="sep"></div>
               
-              <select name="image" id="image" onchange="change_image ();">{images}
+              <select name="image" id="image" onchange="change_image (); return false;">{images}
               </select><br/>
               <br/>
               
               Или загрузите картинку с компьютера:
+              
               <div class="sep"></div>
               
               <input type="file" name="image_hdd" id="image_hdd"/><br/>
               <br/>
               
               Или укажите полный URL любой картинки:
+              
               <div class="sep"></div>
               
               <input type="text" class="input" name="image_url" id="image_url" value="{image_url}" style="width:300px;"/>
@@ -38,7 +40,7 @@
               
               <textarea class="textarea" style="width:300px; height:50px;" name="text_top" id="text_top"></textarea>
               <div class="sep"></div>
-              Размер шрифта: <select name="font_size_top">{font_sizes}</select><br/>
+              Размер шрифта: <select name="font_size_top" id="font_size_top">{font_sizes}</select><br/>
               <br/>
               Низ:
               <div class="sep"></div>
@@ -46,8 +48,10 @@
               <textarea class="textarea" style="width:300px; height:50px;" name="text_bottom" id="text_bottom"></textarea>
               <div class="sep"></div>
               
-              Размер шрифта: <select name="font_size_bottom">{font_sizes}</select><br/>
+              Размер шрифта: <select name="font_size_bottom" id="font_size_bottom">{font_sizes}</select><br/>
               <br/>
+              
+              Размер изображения: <input type="text" style="width:50px; height:20px; text-align:center;" id="image_size" value="" /><br/>
               <br/>
               <input type="hidden" name="action" value="make"/>
               <input type="submit" class="button" value="Поехали"/>

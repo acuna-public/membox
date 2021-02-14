@@ -1,13 +1,14 @@
 <?php
 	
 	if (!defined ('LISAS_CMS')) die ('Hacking attempt!');
-	
+  
+	require LISAS_FRAMEWORK_DIR.'/libraries/images.php';
+  
 	$error = array ();
-	if ($global['name']) $_POST['image'] = $global['name'];
 	
 	if ($_POST['action'] == 'make') {
 		
-    if (not_empty ($_POST['text_top']) or not_empty ($_POST['text_bottom'])) {
+    //if (not_empty ($_POST['text_top']) or not_empty ($_POST['text_bottom'])) {
       
       $data = array (
         
@@ -31,9 +32,8 @@
         $data['image_url'] = $_POST['image_url'];
         imagedestroy ($image);
         
-      } elseif (is_array ($_FILES['image_hdd']) and !$_FILES['image_hdd']['error']) {
+      } elseif (is_array ($_FILES['image_hdd']) and $file = $_FILES['image_hdd'] and !$file['error']) {
         
-        $file = $_FILES['image_hdd'];
         $file_type = get_filetype ($file['name']);
         
         if (is_image ($file['tmp_name']) and exif_imagetype ($file['tmp_name']) and in_array ($file_type, $image_types)) { // Проверяем картинку
@@ -45,6 +45,16 @@
             if (!move_uploaded_file ($file['tmp_name'], ROOT_DIR.'/files/'.$_POST['image']))
             $error[] = 'Загрузка файла невозможна.';
             
+            $file = ROOT_DIR.'/files/'.$_POST['image'];
+            $image = new Image ($file);
+            
+            if ($_POST['image_size']) {
+              
+              $image->resize ([0, $_POST['image_size']]);
+              $image->save ($file);
+              
+            }
+            
             $data['image_hdd'] = $_POST['image'];
             
           } else $error[] = 'Загрузка файла невозможна.';
@@ -53,7 +63,11 @@
         
       } else {
         
-        if (!not_empty ($_POST['image'] and !$global['name'])) $error[] = 'Выберите картинку!';
+        if ($file['error'])
+          $error[] = $file['error'];
+        elseif (!not_empty ($_POST['image']))
+          $error[] = 'Выберите картинку!';
+        
         $data['image'] = $_POST['image'];
         
       }
@@ -77,7 +91,7 @@
         
       } else $content = '<div style="padding:5px;">'.message ($error).'</div>';
       
-    }
+    //}
 		
 	} elseif ($_POST['action'] == 'change_image') {
 		
@@ -88,5 +102,3 @@
 	} else die ('Неверное действие!');
 	
 	echo $content;
-  
-?>

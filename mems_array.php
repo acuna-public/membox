@@ -58,5 +58,3 @@
  		'alone' => 'Forever Alone',
     
 	);
-	
-?>

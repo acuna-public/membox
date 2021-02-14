@@ -4,13 +4,21 @@
   
 	define ('LISAS_FRAMEWORK_DIR', '../lisas-framework');
   
-  require LISAS_FRAMEWORK_DIR.'/functions/first.php';
-  require LISAS_FRAMEWORK_DIR.'/functions/functions.php';
+  require LISAS_FRAMEWORK_DIR.'/libraries/debug.php';
+  require LISAS_FRAMEWORK_DIR.'/libraries/arrays.php';
+  require LISAS_FRAMEWORK_DIR.'/libraries/strings.php';
+  require LISAS_FRAMEWORK_DIR.'/libraries/network.php';
+  require LISAS_FRAMEWORK_DIR.'/libraries/filesystem.php';
+  require LISAS_FRAMEWORK_DIR.'/libraries/security.php';
+  require LISAS_FRAMEWORK_DIR.'/libraries/core.php';
+  require LISAS_FRAMEWORK_DIR.'/libraries/math.php';
+  require LISAS_FRAMEWORK_DIR.'/libraries/outputs.php';
+  require LISAS_FRAMEWORK_DIR.'/libraries/unicode.php';
   
 	$_ENV = '';
 	
-	$_GET = lisas_secure_data ($_GET);
-	$_POST = lisas_secure_data ($_POST, POST);
+	$_GET = secure_request ($_GET);
+	$_POST = secure_request ($_POST, POST);
 	
 	require ROOT_DIR.'/config.php';
 	
@@ -34,6 +42,4 @@
 	require ROOT_DIR.'/functions.php';
 	
 	$image_types = array ('jpg', 'jpeg', 'jpe', 'png', 'gif'); // Картинки
-	$action = $_POST['action'];
-	
-?>
+	if (isset ($_POST['action'])) $action = $_POST['action']; else $action = '';

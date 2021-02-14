@@ -4,11 +4,11 @@
 	ob_start ();
 	@ob_implicit_flush ();
 	
-	@error_reporting (E_ALL ^ E_WARNING ^ E_NOTICE);
+	@error_reporting (E_ALL);
 	
 	@ini_set ('display_errors', true);
 	@ini_set ('html_errors', false);
-	@ini_set ('error_reporting', E_ALL ^ E_WARNING ^ E_NOTICE);
+	@ini_set ('error_reporting', E_ALL);
 	
 	define ('LISAS_CMS', true);
 	define ('ROOT_DIR', dirname (__FILE__));
@@ -83,5 +83,3 @@
     @unlink (ROOT_DIR.'/files/'.$file);
     
 	} else require ROOT_DIR.'/mem_make.php';
-	
-?>

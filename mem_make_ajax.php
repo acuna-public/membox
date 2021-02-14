@@ -9,8 +9,6 @@
 	
 	require ROOT_DIR.'/init.php';
 	
-	if (clean_url ($_SERVER['HTTP_HOST']) != clean_url ($_SERVER['HTTP_REFERER'])) die ('Hacking Attempt!');
+	if (get_domain ($_SERVER['HTTP_HOST']) != get_domain ($_SERVER['HTTP_REFERER'])) die ('Hacking Attempt!');
 	
 	require ROOT_DIR.'/mem_make.php';
-	
-?>

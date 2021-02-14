@@ -28,13 +28,13 @@
 		
 	}
 	
-	function prepare_text ($text, $type) {
-		return explode ('<br />', nl2br (lisas_ucfirst (secure_text (url_decode ($text), $type))));
+	function prepare_text ($text) {
+		return explode ('<br />', nl2br (lisas_ucfirst (secure_text (url_decode ($text)))));
 	}
 	
-	function secure_text ($str, $ajax = 1) {
+	function secure_text ($str) {
 		
-		$str = trim (str_replace (array ('  '), array (' '), $str));
+		$str = trim (preg_replace ('~ +~', ' ', $str));
 		//if ($ajax) $str = to_unicode ($str);
 		
 		return stripslashes ($str);
@@ -42,7 +42,7 @@
 	}
 	
 	function virgin_text ($text) {
-		return str_replace (array ('\"', "\'"), array ('"', "'"), $text);
+		return str_replace (array ('\"', "\'"), array ('"', "'"), trim ($text));
 	}
 	
 	function show_image ($file, $image) {
@@ -110,5 +110,50 @@
 		if (is_array ($mess)) $mess = mess2br ($mess);
 		return $mess;
 	}
-	
-?>
+  
+  function image_text2 ($image, string $text, string $font, int $font_size_top, int $thickness, int $pos = 1) {
+    
+    $text_top_array = [];
+		
+		$text_color = imagecolorallocate ($image, 255, 255, 255); // Текст
+		$text_color_c = imagecolorallocate ($image, 0, 0, 0); // Обводка
+    
+		//$width2 = 450; $height2 = 450;
+		$width2 = imagesx ($image);
+    $height2 = imagesy ($image);
+		
+		$font_size_top = intval_correct ($font_size_top, 34);
+    
+		$x = array ($thickness, 0, $thickness, 0, -$thickness, -$thickness, $thickness, 0, -$thickness); 
+		$y = array (0, -$thickness, -$thickness, 0, 0, -$thickness, $thickness, $thickness, $thickness); 
+		
+    $i = 0;
+    
+    $texts = prepare_text ($text);
+    $texts_count = count ($texts);
+    
+		foreach ($texts as $text) { // Верх
+			
+			$text = virgin_text ($text);
+			$box = imagettfbbox ($font_size_top, 0, $font, $text);
+			
+			$x_top = ceil (($width2 - $box[2]) / 2);
+      
+      if ($pos == 1)
+        $y_top = (abs ($box[5] - $box[1] - 15) * ($i + 1));
+			elseif ($pos == 2)
+        $y_top = $height2 - ((abs ($box[5] - $box[1]) + 10) * ($texts_count - ($i + 1))) - 25; // 450 - (40 * 2)
+      
+			for ($i2 = 0; $i2 <= 8; ++$i2)
+        imagettftext ($image, $font_size_top, 0, $x_top + $x[$i2], $y_top + $y[$i2], $text_color_c, $font, $text); // Обводка
+			
+			imagettftext ($image, $font_size_top, 0, $x_top, $y_top, $text_color, $font, $text); // Текст
+			
+			$text_top_array[] = $text;
+			++$i;
+      
+		}
+    
+    return $text_top_array;
+		
+  }
